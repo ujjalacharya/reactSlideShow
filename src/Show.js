@@ -4,7 +4,7 @@ var createClass = require('create-react-class');
 var Title = createClass({
     render: function () {
         return (
-            <h3>Title: Friends</h3>
+            <h3>Title: {this.props.showTitle}</h3>
         )
     }
 });
@@ -12,7 +12,7 @@ var Title = createClass({
 var Poster = createClass({
     render: function () {
         return (
-            <img src="https://www.movieposter.com/posters/archive/main/52/MPW-26106" alt="Show Poster" style={{ height: 400, width: 400 }} />
+            <img src={this.props.showPoster}alt="Show Poster" style={{ height: 400, width: 400 }} />
         )
     }
 })
@@ -21,8 +21,8 @@ var ShowInfo = createClass({
     render: function () {
         return (
             <div>
-                <p>Plot: Follows the personal and professional lives of six 20 to 30-something-year-old friends living in Manhattan.</p>
-                <h5>IMDB Rating: 9.0</h5>
+                <p>Plot: {this.props.showPlot}</p>
+                <h5>IMDB Rating: {this.props.showRating}</h5>
             </div>
         )
     }
@@ -30,11 +30,12 @@ var ShowInfo = createClass({
 
 var Show = createClass({
     render: function () {
+        var show = this.props.show;
         return (
             <div className="text-center">
-                <Title />
-                <Poster />
-                <ShowInfo />
+                <Title showTitle={show.title}/>
+                <Poster showPoster={show.poster}/>
+                <ShowInfo showPlot={show.plot} showRating={show.imdbRating}/>
             </div>
         );
     }
