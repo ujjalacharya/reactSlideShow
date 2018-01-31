@@ -29,13 +29,30 @@ var ShowInfo = createClass({
 })
 
 var Show = createClass({
+    getInitialState: function(){
+        return{
+            showIndex: 0
+        }
+    },
+
+    handleClick: function(){
+        var totalValues = this.props.shows.length;
+       this.setState(function(prevState){
+            return{
+                showIndex: (prevState.showIndex + 1) % totalValues
+            }
+       })
+   
+    },
     render: function () {
-        var show = this.props.show;
+        var show = this.props.shows[this.state.showIndex];
+        
         return (
             <div className="text-center">
                 <Title showTitle={show.title}/>
                 <Poster showPoster={show.poster}/>
                 <ShowInfo showPlot={show.plot} showRating={show.imdbRating}/>
+                <button onClick={this.handleClick}>Next</button>
             </div>
         );
     }
