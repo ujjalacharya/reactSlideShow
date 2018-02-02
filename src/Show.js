@@ -1,57 +1,56 @@
 var React = require("react");
-var createClass = require('create-react-class');
 
-var Title = createClass({
-    render: function () {
-        return (
+
+class Title extends React.Component{
+    render(){
+        return(
             <h3>Title: {this.props.showTitle}</h3>
         )
     }
-});
+}
 
-var Poster = createClass({
-    render: function () {
-        return (
+
+class Poster extends React.Component{
+    render(){
+        return(
             <img src={this.props.showPoster}alt="Show Poster" style={{ height: 400, width: 400 }} />
         )
     }
-})
+}
 
-var ShowInfo = createClass({
-    render: function () {
-        return (
+class ShowInfo extends React.Component{
+    render(){
+        return(
             <div>
                 <p>Plot: {this.props.showPlot}</p>
-                <h5>IMDB Rating: {this.props.showRating}</h5>
-            </div>
+                 <h5>IMDB Rating: {this.props.showRating}</h5>
+           </div>
         )
     }
-})
+}
 
-var Show = createClass({
-    getDefaultProps: function(){
-        return{
-            showIndex: 0
-        }
-    },
+class Show extends React.Component{
+    static defaultProps = {
+        showIndex: 0
+    }
 
-
-    getInitialState: function(){
-        return{
+    constructor(props){
+        super(props);
+        this.state = {
             showIndex: this.props.showIndex
         }
-    },
+    }
 
-    handleClick: function(){
+     handleClick = () =>{
         var totalValues = this.props.shows.length;
-       this.setState(function(prevState){
-            return{
-                showIndex: (prevState.showIndex + 1) % totalValues
-            }
-       })
-   
-    },
-    render: function () {
+        this.setState(function(prevState){
+             return{
+                 showIndex: (prevState.showIndex + 1) % totalValues
+             }
+        })
+    }
+
+    render(){
         var show = this.props.shows[this.state.showIndex];
         
         return (
@@ -63,6 +62,7 @@ var Show = createClass({
             </div>
         );
     }
-})
+}
+
 
 module.exports = Show;
