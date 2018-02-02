@@ -29,9 +29,16 @@ var ShowInfo = createClass({
 })
 
 var Show = createClass({
-    getInitialState: function(){
+    getDefaultProps: function(){
         return{
             showIndex: 0
+        }
+    },
+
+
+    getInitialState: function(){
+        return{
+            showIndex: this.props.showIndex
         }
     },
 

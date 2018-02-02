@@ -7,7 +7,7 @@ var shows = require("./shows.json");
 
 ReactDOM.render(
     <div>
-    <Show shows={shows}/>
+    <Show shows={shows} showIndex={1}/>
     </div>
     
     ,document.getElementById("root")
